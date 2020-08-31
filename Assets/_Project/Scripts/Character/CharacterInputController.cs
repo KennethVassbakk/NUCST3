@@ -1,16 +1,21 @@
-﻿using UnityEngine;
+﻿// Author: Kenneth Vassbakk
 
-public class CharacterInputController : MonoBehaviour
+using UnityEngine;
+
+namespace Character
 {
-    [SerializeField] public Vector3 inputVector;
-
-    [SerializeField] public Vector2 mousePosition;
-
-    private void Update()
+    public class CharacterInputController : MonoBehaviour
     {
-        inputVector.x = Input.GetAxisRaw("Horizontal");
-        inputVector.z = Input.GetAxisRaw("Vertical");
+        [SerializeField] public Vector3 inputVector;
 
-        mousePosition = Input.mousePosition;
+        [SerializeField] public Vector2 mousePosition;
+
+        private void Update()
+        {
+            inputVector.x = Input.GetAxisRaw("Horizontal");
+            inputVector.z = Input.GetAxisRaw("Vertical");
+
+            mousePosition = Input.mousePosition;
+        }
     }
 }
