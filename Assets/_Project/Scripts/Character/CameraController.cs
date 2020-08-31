@@ -31,7 +31,7 @@ namespace Character
         
         /// <summary>
         /// Currently only used by itself.
-        /// May be used if we add zoom functionality to the game - if so, make public and run from CharacterInputController.
+        /// May be used if we add zoom functionality to the game - if so, make public and run from CharacterInputController, or a CameraInputController
         /// </summary>
         /// <param name="distance"></param>
         private void Zoom(float distance)
