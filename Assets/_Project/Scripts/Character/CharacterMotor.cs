@@ -46,6 +46,10 @@ namespace Character
 
         private void RotateToMouse(Vector2 inputMousePosition)
         {
+            // TODO: Rotation Joints.
+            // Currently rotation is forced, the character glides on the ground to rotate towards the mouse.
+            // A more natural rotation would be head -> torso -> feet.
+            
             // If the magnitude is low, dont run
             if (inputMousePosition.magnitude < 0.1f)
                 return;
