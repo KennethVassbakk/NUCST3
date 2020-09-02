@@ -189,8 +189,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a8f505959082544a18056ee6557b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateTowardsMouse: 0
+  rotateTowardsMouse: 1
   moveSpeed: 5
+--- !u!114 &69229504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69229497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c425eb49f6aef04b9414f465e4f8ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &452384245
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,8 +579,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741552759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.73394555, y: 0.913, z: -10.331412}
+  m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433914}
+  m_LocalPosition: {x: 0.73394555, y: 9.976078, z: -4.5575943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -795,6 +807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931250018}
   - component: {fileID: 931250017}
+  - component: {fileID: 931250019}
   m_Layer: 0
   m_Name: Game_VCAM
   m_TagString: Untagged
@@ -844,14 +857,30 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931250016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.73394555, y: 0.913, z: -10.331412}
+  m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433914}
+  m_LocalPosition: {x: 0.73394555, y: 9.976078, z: -4.5575943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1815288306}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &931250019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931250016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f122e08ebafc414381a0963013ebe59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleMin: 35
+  angleMax: 65
+  distanceMin: 10
+  distanceMax: 15
 --- !u!1001 &1515259918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -961,9 +990,9 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.1
+  m_YDamping: 0.1
+  m_ZDamping: 0.1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
