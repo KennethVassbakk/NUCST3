@@ -47,7 +47,9 @@ namespace Character
         private void FixedUpdate()
         {
             _playerGrounded = _characterController.isGrounded;
-            _moveVector = MoveTowardsVector(_input.inputVector);
+            
+            if(_playerGrounded)
+                _moveVector = MoveTowardsVector(_input.inputVector);
             
             //  Check Slope if we're grounded
             if(_moveVector.magnitude > 0.1 && _playerGrounded)
