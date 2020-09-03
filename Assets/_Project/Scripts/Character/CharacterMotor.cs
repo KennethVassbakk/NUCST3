@@ -22,7 +22,8 @@ namespace Character
         private Plane _intersectPlane;
 
         private Vector3 _moveVector;
-        private bool _playerGrounded;
+        [SerializeField] private bool _playerGrounded;
+        [SerializeField] private bool _groundSlope;
 
         [SerializeField] private float moveSpeed = 5f;
 
@@ -48,7 +49,6 @@ namespace Character
             // Character Movement - If the input vector is greater than 0.1
             _moveVector = MoveTowardsVector(_input.inputVector);
             
-            _playerGrounded = _characterController.isGrounded;
             if (_playerGrounded && _moveVector.y < 0)
                 _moveVector.y = 0f;
             
@@ -62,8 +62,12 @@ namespace Character
                 RotateToDirection(moveVector);
             */
 
+            // Check the ground
+            if(_moveVector.magnitude > 0.1)
+                GroundCheck();
+            
             // Set velocity
-            if (_moveVector.magnitude > 0.1 && OnSlope())
+            if (_moveVector.magnitude > 0.1 && _groundSlope)
                 _moveVector.y += GRAVITY_VALUE * SLOPE_FORCE;
             else
                 _moveVector.y += GRAVITY_VALUE * Time.deltaTime;
@@ -73,6 +77,22 @@ namespace Character
             
             // Finally we need to update our Intersect plane, to match our position
             _intersectPlane = new Plane(Vector3.up, transform.position);
+        }
+
+        private void GroundCheck()
+        {
+            
+            if (Physics.Raycast(transform.position, Vector3.down, out var hit,
+                _characterController.height / 2 * SLOPE_FORCE_RAY_LENGTH))
+            {
+                _playerGrounded = true;
+                _groundSlope = hit.normal != Vector3.up;
+            }
+            else
+            {
+                _playerGrounded = false;
+                _groundSlope = false;
+            }
         }
 
         private void RotateToMouse(Vector2 inputMousePosition)
@@ -128,22 +148,7 @@ namespace Character
             //_characterController.Move(moveVector * (Time.deltaTime * moveSpeed));
             return inputVector * moveSpeed;
         }
-    
-        /// <summary>
-        /// Are we on a sloped terrain?
-        /// </summary>
-        /// <returns></returns>
-        private bool OnSlope()
-        {
-            // If we're jumping, return false..
-            // not implemented.
-
-            if (Physics.Raycast(transform.position, Vector3.down, out var hit,
-                _characterController.height / 2 * SLOPE_FORCE_RAY_LENGTH))
-                return hit.normal != Vector3.up;
-            return false;
-        }
-
+        
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
