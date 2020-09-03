@@ -139,7 +139,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.86
+  m_Height: 1.7
   m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7f3651438653245a39ea6f2f5460b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveVector: {x: 0, y: 0, z: 0}
   _playerGrounded: 0
   _groundSlope: 0
   moveSpeed: 5
