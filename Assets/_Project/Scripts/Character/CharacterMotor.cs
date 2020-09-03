@@ -9,7 +9,7 @@ namespace Character
         private const float GRAVITY_VALUE = -9.81f;
 
         //  Used for handling slope stuttering
-        private const float SLOPE_FORCE = 3;
+        private const float SLOPE_FORCE = 5;
 
         private const float SLOPE_FORCE_RAY_LENGTH = 0.5f;
 
@@ -21,7 +21,7 @@ namespace Character
         private CharacterInputController _input;
         private Plane _intersectPlane;
 
-        private Vector3 _moveVector;
+        [SerializeField] private Vector3 _moveVector;
         [SerializeField] private bool _playerGrounded;
         [SerializeField] private bool _groundSlope;
 
@@ -46,9 +46,14 @@ namespace Character
 
         private void FixedUpdate()
         {
-            // Character Movement - If the input vector is greater than 0.1
+            _playerGrounded = _characterController.isGrounded;
             _moveVector = MoveTowardsVector(_input.inputVector);
             
+            //  Check Slope if we're grounded
+            if(_moveVector.magnitude > 0.1 && _playerGrounded)
+                SlopeCheck();
+            
+            // If we're grounded and falling, set velocity to 0
             if (_playerGrounded && _moveVector.y < 0)
                 _moveVector.y = 0f;
             
@@ -61,16 +66,13 @@ namespace Character
             else
                 RotateToDirection(moveVector);
             */
-
-            // Check the ground
-            if(_moveVector.magnitude > 0.1)
-                GroundCheck();
             
-            // Set velocity
-            if (_moveVector.magnitude > 0.1 && _groundSlope)
-                _moveVector.y += GRAVITY_VALUE * SLOPE_FORCE;
-            else
-                _moveVector.y += GRAVITY_VALUE * Time.deltaTime;
+            // Gravity
+            _moveVector.y += Physics.gravity.y * Time.fixedDeltaTime;
+            
+            // If we're on a slope, magnify to avoid stutter.
+            if (_groundSlope)
+                _moveVector.y += Physics.gravity.y * SLOPE_FORCE;
             
             // Moving the controller should only be done ONCE.
             _characterController.Move(_moveVector * Time.fixedDeltaTime);
@@ -79,18 +81,17 @@ namespace Character
             _intersectPlane = new Plane(Vector3.up, transform.position);
         }
 
-        private void GroundCheck()
+        private void SlopeCheck()
         {
-            
+            //Physics.OverlapSphere(transform.position, 0.3f)
             if (Physics.Raycast(transform.position, Vector3.down, out var hit,
                 _characterController.height / 2 * SLOPE_FORCE_RAY_LENGTH))
             {
-                _playerGrounded = true;
+                //_playerGrounded = true;
                 _groundSlope = hit.normal != Vector3.up;
             }
             else
             {
-                _playerGrounded = false;
                 _groundSlope = false;
             }
         }
@@ -143,10 +144,10 @@ namespace Character
             if (inputVector.magnitude < 0.1f) 
                 return new Vector3(0f, _moveVector.y, 0f);
 
-            inputVector = Quaternion.Euler(0f, _cam.transform.eulerAngles.y, 0f) * inputVector.normalized;
+            inputVector = Quaternion.Euler(0f, _cam.transform.eulerAngles.y, 0f) * inputVector.normalized ;
             //_rb.MovePosition(_rb.position + moveVector * (moveSpeed * Time.fixedDeltaTime));
             //_characterController.Move(moveVector * (Time.deltaTime * moveSpeed));
-            return inputVector * moveSpeed;
+            return new Vector3(inputVector.x * moveSpeed, _moveVector.y, inputVector.z * moveSpeed) ;
         }
         
 #if UNITY_EDITOR
