@@ -1,5 +1,4 @@
 ﻿// Author: Kenneth Vassbakk
-
 using UnityEngine;
 
 namespace Character
@@ -17,7 +16,14 @@ namespace Character
         private float _aCurrentMovementSpeed;
         private float _aCurrentHorizontal;
         private float _aCurrentVertical;
-
+        
+        // Blend speed
+        private float _blendSpeed = 0.25f;
+        
+        #if UNITY_EDITOR
+        private Vector3 _debugVector;
+        #endif
+        
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -33,9 +39,9 @@ namespace Character
         /// Animate character based on its rigidbody and the movement vector.
         /// Rotation of the character is taken into accounnt.
         /// </summary>
-        /// <param name="rb">Character Rigidbody</param>
+        /// <param name="characterTransform">Character transform</param>
         /// <param name="moveVector">Vector3 MovementDirection (input)</param>
-        public void AnimateMovement(Rigidbody rb, Vector3 moveVector)
+        public void AnimateMovement(Transform characterTransform, Vector3 moveVector)
         {
             _aCurrentHorizontal = _animator.GetFloat(_aHorizontal);
             _aCurrentVertical = _animator.GetFloat(_aVertical);
@@ -50,29 +56,43 @@ namespace Character
                 _animator.SetFloat(_aMovementSpeed, 0f);
                 
                 // We also reset the horizontal and vertical of the animator; lerping to smooth transition
-                _animator.SetFloat(_aHorizontal, (_aCurrentHorizontal > 0.05f) ? Mathf.Lerp(_aCurrentHorizontal, 0f, 0.25f) : 0f);
-                _animator.SetFloat(_aVertical, (_aCurrentVertical > 0.05f) ? Mathf.Lerp(_aCurrentVertical, 0f, 0.25f) : 0f);
+                _animator.SetFloat(_aHorizontal, (_aCurrentHorizontal > 0.05f) ? Mathf.Lerp(_aCurrentHorizontal, 0f, _blendSpeed) : 0f);
+                _animator.SetFloat(_aVertical, (_aCurrentVertical > 0.05f) ? Mathf.Lerp(_aCurrentVertical, 0f, _blendSpeed) : 0f);
                 return;
             }
             
-            var position = rb.position;
+            var position = characterTransform.position;
             
             // Point we're moving towards relative to the player location
-            moveVector = new Vector3(moveVector.x, position.y, moveVector.z) + position;
-            var moveToward = moveVector - position;
+            moveVector = new Vector3(moveVector.x, position.y, moveVector.z) + new Vector3(position.x, 0f, position.z);
+            var moveToward = moveVector;
 
             moveToward = moveToward.normalized;
             
-            var relativePosition = rb.transform.InverseTransformDirection(moveToward);
+            var relativePosition = characterTransform.InverseTransformDirection(moveToward);
             
             // We currently dont need to know the relative Angle, but here's the method for it.
             // var relativeAngle = Vector3.Angle(_rb.transform.forward, moveToward);
             
             // Set Animation Settings
             _animator.SetFloat(_aMovementSpeed, moveVectorNormalized.magnitude);
-            _animator.SetFloat(_aHorizontal, Mathf.Lerp(_aCurrentHorizontal, relativePosition.x, 0.25f));
-            _animator.SetFloat(_aVertical, Mathf.Lerp(_aCurrentVertical, relativePosition.z, 0.25f));
+            _animator.SetFloat(_aHorizontal, Mathf.Lerp(_aCurrentHorizontal, relativePosition.x, _blendSpeed));
+            _animator.SetFloat(_aVertical, Mathf.Lerp(_aCurrentVertical, relativePosition.z, _blendSpeed));
 
+            _debugVector = moveVector;
         }
+
+        #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
+            Gizmos.DrawWireSphere(_debugVector, 1f);
+        }
+        #endif
+        
     }
 }
