@@ -1,4 +1,6 @@
 ﻿// Author: Kenneth Vassbakk
+
+using System;
 using UnityEngine;
 
 namespace Character
@@ -18,7 +20,7 @@ namespace Character
         private float _aCurrentVertical;
         
         // Blend speed
-        private float _blendSpeed = 0.25f;
+        private float _dampTime = 0.1f;
         
         #if UNITY_EDITOR
         private Vector3 _debugVector;
@@ -56,8 +58,8 @@ namespace Character
                 _animator.SetFloat(_aMovementSpeed, 0f);
                 
                 // We also reset the horizontal and vertical of the animator; lerping to smooth transition
-                _animator.SetFloat(_aHorizontal, (_aCurrentHorizontal > 0.05f) ? Mathf.Lerp(_aCurrentHorizontal, 0f, _blendSpeed) : 0f);
-                _animator.SetFloat(_aVertical, (_aCurrentVertical > 0.05f) ? Mathf.Lerp(_aCurrentVertical, 0f, _blendSpeed) : 0f);
+                _animator.SetFloat(_aHorizontal, (_aCurrentHorizontal > 0.05f) ? Mathf.Lerp(_aCurrentHorizontal, 0f, _dampTime) : 0f);
+                _animator.SetFloat(_aVertical, (_aCurrentVertical > 0.05f) ? Mathf.Lerp(_aCurrentVertical, 0f, _dampTime) : 0f);
                 return;
             }
             
@@ -65,7 +67,7 @@ namespace Character
             
             // Point we're moving towards relative to the player location
             moveVector = new Vector3(moveVector.x, position.y, moveVector.z) + new Vector3(position.x, 0f, position.z);
-            var moveToward = moveVector;
+            var moveToward = moveVector - transform.position;
 
             moveToward = moveToward.normalized;
             
@@ -76,9 +78,12 @@ namespace Character
             
             // Set Animation Settings
             _animator.SetFloat(_aMovementSpeed, moveVectorNormalized.magnitude);
-            _animator.SetFloat(_aHorizontal, Mathf.Lerp(_aCurrentHorizontal, relativePosition.x, _blendSpeed));
-            _animator.SetFloat(_aVertical, Mathf.Lerp(_aCurrentVertical, relativePosition.z, _blendSpeed));
-
+            
+            // Lerp animations
+            _animator.SetFloat(_aHorizontal, relativePosition.x, _dampTime, Time.deltaTime);
+            _animator.SetFloat(_aVertical, relativePosition.z, _dampTime, Time.deltaTime);
+            
+            // Used for the unity Editor
             _debugVector = moveVector;
         }
 

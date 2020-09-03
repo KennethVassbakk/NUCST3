@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 69229497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ccf405c326ec45449afba2d7b32f2b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b2e15afdb31cd14cbf41a3d79ba07b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputVector: {x: 0, y: 0, z: 0}
@@ -174,9 +174,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 69229497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a8f505959082544a18056ee6557b34, type: 3}
+  m_Script: {fileID: 11500000, guid: ad7f3651438653245a39ea6f2f5460b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerGrounded: 0
+  _groundSlope: 0
   moveSpeed: 5
 --- !u!114 &69229504
 MonoBehaviour:
@@ -187,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 69229497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c425eb49f6aef04b9414f465e4f8ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 66645ff540bb87c438d8f5f55b78ab95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &383115966
@@ -579,7 +581,7 @@ Transform:
   m_GameObject: {fileID: 707225143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.034, z: 1.35}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 501, y: 1, z: 501}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -957,7 +959,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 931250016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f122e08ebafc414381a0963013ebe59f, type: 3}
+  m_Script: {fileID: 11500000, guid: 92c72bdbed6a4594abf5739ff74aa3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleMin: 35
@@ -1022,7 +1024,11 @@ PrefabInstance:
     - target: {fileID: 95747970734608612, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 0465e2330e1424b45bca84b840d57fd0, type: 2}
+      objectReference: {fileID: 9100000, guid: 8d2202aba45df8447b6ca69d66eafe57, type: 2}
+    - target: {fileID: 95747970734608612, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
 --- !u!1 &1815288305
