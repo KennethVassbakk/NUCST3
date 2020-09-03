@@ -42,10 +42,7 @@ namespace Character
         private void Update()
         {
             _characterAnimation.AnimateMovement(transform, _input.inputVector);
-        }
-
-        private void FixedUpdate()
-        {
+            
             _playerGrounded = _characterController.isGrounded;
             
             if(_playerGrounded)
@@ -76,11 +73,14 @@ namespace Character
             if (_groundSlope)
                 _moveVector.y += Physics.gravity.y * SLOPE_FORCE;
             
-            // Moving the controller should only be done ONCE.
-            _characterController.Move(_moveVector * Time.fixedDeltaTime);
-            
             // Finally we need to update our Intersect plane, to match our position
             _intersectPlane = new Plane(Vector3.up, transform.position);
+        }
+
+        private void FixedUpdate()
+        {
+            // Moving the controller should only be done ONCE, and during fixed update
+            _characterController.Move(_moveVector * Time.fixedDeltaTime);
         }
 
         private void SlopeCheck()
@@ -116,7 +116,9 @@ namespace Character
             var direction = ray.GetPoint(distance) - transform.position;
             var angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             //_rb.rotation = Quaternion.Euler(0, angle, 0);
-            transform.rotation = Quaternion.Euler(0, angle, 0);
+            //transform.rotation = Quaternion.Euler(0, angle, 0);
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, angle, 0), Time.fixedDeltaTime * 800);
         }
 
 
