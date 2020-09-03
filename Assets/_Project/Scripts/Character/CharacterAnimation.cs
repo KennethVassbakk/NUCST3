@@ -95,7 +95,9 @@ namespace Character
                 return;
             }
 
-            Gizmos.DrawWireSphere(_debugVector, 1f);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(_debugVector, 0.25f);
+            Gizmos.color = Color.white;
         }
         #endif
         

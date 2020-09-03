@@ -162,7 +162,7 @@ namespace Character
 
             var position = transform.position;
             var raydistance = position - new Vector3(0f, _characterController.height / 2 * SLOPE_FORCE_RAY_LENGTH, 0f);
-            Debug.DrawLine(position, raydistance, Color.red, Time.deltaTime);
+            Debug.DrawLine(position, raydistance, Color.yellow, Time.deltaTime);
         }
 #endif
     }
