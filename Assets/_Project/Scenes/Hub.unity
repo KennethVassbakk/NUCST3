@@ -2846,6 +2846,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Motions Dummy - Run (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1464649480603760, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4356730523324166, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.61
