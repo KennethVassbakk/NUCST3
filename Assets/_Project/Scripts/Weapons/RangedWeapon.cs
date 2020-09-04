@@ -12,22 +12,11 @@ namespace Weapons
         // It might be better to have a WeaponParameters on the Weapon Prefab itself
         // and handing information to/from that.
 
-        public string projectileSpawn;                        // Name of the transform holding the projectile spawn
-        [HideInInspector] public Transform projectileSpawnTransform = null;     // Reference to that location.
-        
-        public override void Initialize(GameObject character, GameObject weapon)
+        public override void Initialize(GameObject character)
         {
-            InitializeAbilities();
-            
-            projectileSpawnTransform = weapon.GetComponent<WeaponParameters>().projectileSpawn;
-            
-            if(projectileSpawnTransform == null)
-                Debug.Log($"Weapon {wName} could not find its projectile spawn location {projectileSpawnTransform}");
-            
-            // We need to initialize all the abilities as well
-            foreach (var entry in CurrentAbilities)
+            foreach (var entry in wAbilities)
             {
-                entry.Initialize(character, weapon);
+                entry.Initialize(character);
             }
         }
     }

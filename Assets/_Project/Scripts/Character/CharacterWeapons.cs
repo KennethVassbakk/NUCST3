@@ -12,34 +12,31 @@ namespace Character
         public int currentWeaponIndex;
         public GameObject currentWeaponObj;
         public Weapon[] weapon;
-        private Weapon[] _myWeapon;
         public Transform weaponLocation;
+        public WeaponParameters weaponParameters;
+
+        public ProjectileTriggerable projectileTriggerable;
 
         private void OnEnable()
-        {
-            _myWeapon = new Weapon[weapon.Length];
-            for (int i = 0; i < weapon.Length; i++)
-            {
-                _myWeapon[i] = Instantiate(weapon[i]);
-            }
-            var currentWep = _myWeapon[currentWeaponIndex];
+        { 
+            var currentWep = weapon[currentWeaponIndex];
+            projectileTriggerable = GetComponent<ProjectileTriggerable>();
             
             currentWeaponObj = PoolManager.Spawn(currentWep.wGameObject, weaponLocation.position, weaponLocation.rotation);
             currentWeaponObj.transform.SetParent(weaponLocation);
-            currentWep.Initialize(gameObject, currentWeaponObj);
-
-            var rangedWep  = currentWep as RangedWeapon;
-            if( rangedWep != null)
-                GetComponent<ProjectileTriggerable>().projectileSpawn = rangedWep.projectileSpawnTransform;
-            
+            weaponParameters = currentWeaponObj.GetComponent<WeaponParameters>();
+            currentWep.Initialize(gameObject);
         }
 
         private void Update()
         {
-            var ab = _myWeapon[currentWeaponIndex].CurrentAbilities[0];
+            var ab = weapon[currentWeaponIndex].wAbilities[0];
             // Fire ability just to test it out.
             if (!Input.GetButtonDown("Fire1")) return;
-            ab.TriggerAbility();
+            if (ab.isRangedAttack)
+                ab.TriggerAbility(gameObject, weaponParameters.projectileSpawn);
+            
+            ab.TriggerAbility(gameObject);
         }
     }
 }

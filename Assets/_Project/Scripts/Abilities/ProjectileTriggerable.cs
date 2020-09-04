@@ -6,12 +6,10 @@ namespace Abilities
 {
     public class ProjectileTriggerable : MonoBehaviour
     {
-        public Transform projectileSpawn;
-
-        public GameObject Fire(GameObject projectile)
+        public GameObject Fire(GameObject go, GameObject projectile, Transform spawnLocation)
         {
             // Using PoolManager to save memory usage.
-            return PoolManager.Spawn(projectile, projectileSpawn.position, projectileSpawn.rotation);
+            return PoolManager.Spawn(projectile, spawnLocation.position, spawnLocation.rotation);
         }
     }
 }

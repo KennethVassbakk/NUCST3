@@ -17,8 +17,9 @@ namespace Abilities
         // These are used for calculating the cooldown
         [HideInInspector] public float cooldownDuration;
         [HideInInspector] public float coolDownTimeLeft;
-        public Guid id;
+        [HideInInspector] public Guid id;
         [HideInInspector] public float nextReadyTime;
+        [HideInInspector] public bool isRangedAttack;
 
         public Guid Id => id;
         public float CooldownDuration => aBaseCooldown;
@@ -27,12 +28,11 @@ namespace Abilities
         ///     Initialization of the  Ability
         /// </summary>
         /// <param name="character">The unit holder this ability</param>
-        /// <param name="weapon">The weapon wielding it</param>
-        public abstract void Initialize(GameObject character, GameObject weapon);
+        public abstract void Initialize(GameObject character);
 
         /// <summary>
         ///     Trigger the ability
         /// </summary>
-        public abstract bool TriggerAbility();
+        public abstract bool TriggerAbility(GameObject character, Transform spawnPoint = null);
     }
 }
