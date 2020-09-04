@@ -1,35 +1,37 @@
 ﻿// Author: John Hauge
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class UI : MonoBehaviour
+namespace UI
 {
-    public GameObject PauseMenu_GO;
-
-    void Update()
+    public class UI : MonoBehaviour
     {
-       //to be hooked up to the new input system.
+        [FormerlySerializedAs("PauseMenu_GO")] public GameObject pauseMenuGO;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        void Update()
         {
-            TogglePause();
+            //to be hooked up to the new input system.
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TogglePause();
+            }
         }
+
+        public void TogglePause()
+        {
+            if (pauseMenuGO.activeSelf)
+            {
+                pauseMenuGO.SetActive(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                pauseMenuGO.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+
     }
-
-    public void TogglePause()
-    {
-        if (PauseMenu_GO.activeSelf)
-        {
-            PauseMenu_GO.SetActive(false);
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            PauseMenu_GO.SetActive(true);
-            Time.timeScale = 0f;
-        }
-    }
-
 }

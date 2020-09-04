@@ -1,36 +1,34 @@
 ﻿// Author: John Hauge
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
-public class LoadScene : MonoBehaviour
+namespace Scene
 {
-    private SceneTransition transition;
-    public int SceneNR;
-
-    private void Start()
+    public sealed class LoadScene : MonoBehaviour
     {
-        transition = FindObjectOfType<SceneTransition>();
-    }
+        private SceneTransition _transition;
+        [FormerlySerializedAs("SceneNR")] public int sceneNr;
 
-    public void LoadTheScene(int SceneInt)
-    {
-        SceneManager.LoadScene(SceneInt);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        private void Start()
         {
-            transition.DrawCurtains(this);
+            _transition = FindObjectOfType<SceneTransition>();
+        }
+
+        private static void LoadTheScene(int sceneInt) => SceneManager.LoadScene(sceneInt);
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                _transition.DrawCurtains(this);
+            }
+        }
+
+        public void CurtainClosed()
+        {
+            LoadTheScene(sceneNr);
         }
     }
-
-    public void CurtainClosed()
-    {
-        LoadTheScene(SceneNR);
-    }
-    
 }
