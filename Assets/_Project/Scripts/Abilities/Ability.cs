@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Ability
+namespace Abilities
 {
     public abstract class Ability : ScriptableObject
     {
