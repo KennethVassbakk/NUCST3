@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5074f49f8c266e446ab31babe737b43a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseMenu_GO: {fileID: 2471874442886411537}
+  pauseMenuGO: {fileID: 2471874442886411537}
 --- !u!1 &2471874442886411537
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +323,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2471874442886411539}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: exitGame
+        m_TargetAssemblyTypeName: UI.PauseMenu, Assembly-CSharp
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -455,8 +455,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2471874442886411539}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: toGame
+        m_TargetAssemblyTypeName: UI.PauseMenu, Assembly-CSharp
+        m_MethodName: ToGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,24 +1,25 @@
 ﻿// Author: John Hauge
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMenu : MonoBehaviour
+namespace UI
 {
-    private UI ui;
+    public class PauseMenu : MonoBehaviour
+    {
+        private UI _ui;
 
-    private void Awake()
-    {
-        ui = GetComponentInParent<UI>();
-    }
+        private void Awake()
+        {
+            _ui = GetComponentInParent<UI>();
+        }
 
-    public void toGame()
-    {
-        ui.TogglePause();
-    }
-    public void exitGame()
-    {
-        Application.Quit();
+        public void ToGame()
+        {
+            _ui.TogglePause();
+        }
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }

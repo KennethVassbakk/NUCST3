@@ -1,64 +1,65 @@
 ﻿// Author: John Hauge
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneTransition : MonoBehaviour
+namespace Scene
 {
-    private Image image;
-
-    private bool fadein;
-    private LoadScene load;
-
-    private float t;
-    public float delay;
-
-    private void Awake()
+    public class SceneTransition : MonoBehaviour
     {
-        image = GetComponent<Image>();
+        private Image _image;
 
-        //
+        private bool _fadein;
+        private LoadScene _load;
 
-        t = 1f;
-        image.color = new Color(0f, 0f, 0f, 1f);
-        fadein = true;
-        enabled = true;
-    }
+        private float _t;
+        public float delay;
 
-    private void FixedUpdate()
-    {
-
-        if (fadein)
+        private void Awake()
         {
-            t -= Time.deltaTime / delay;
-            if (t < 0)
-            {
-                enabled = false;
-                return;
-            }
+            _image = GetComponent<Image>();
+
+            //
+
+            _t = 1f;
+            _image.color = new Color(0f, 0f, 0f, 1f);
+            _fadein = true;
+            enabled = true;
         }
-        else
+
+        private void FixedUpdate()
         {
-            t += Time.deltaTime / delay;
-            if (t > 1)
+
+            if (_fadein)
             {
-                enabled = false;
-                load.CurtainClosed();
-                return;
+                _t -= Time.deltaTime / delay;
+                if (_t < 0)
+                {
+                    enabled = false;
+                    return;
+                }
             }
+            else
+            {
+                _t += Time.deltaTime / delay;
+                if (_t > 1)
+                {
+                    enabled = false;
+                    _load.CurtainClosed();
+                    return;
+                }
+            }
+            _image.color = new Color(0f, 0f, 0f, _t);
         }
-        image.color = new Color(0f, 0f, 0f, t);
-    }
 
 
-    public void DrawCurtains(LoadScene loadScene)
-    {
-        t = 0;
-        image.color = new Color(0f, 0f, 0f, 0f);
-        fadein = false;
-        enabled = true;
-        load = loadScene;
+        public void DrawCurtains(LoadScene loadScene)
+        {
+            _t = 0;
+            _image.color = new Color(0f, 0f, 0f, 0f);
+            _fadein = false;
+            enabled = true;
+            _load = loadScene;
+        }
     }
 }
