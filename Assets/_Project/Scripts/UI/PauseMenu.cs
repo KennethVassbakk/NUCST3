@@ -6,11 +6,11 @@ namespace UI
 {
     public class PauseMenu : MonoBehaviour
     {
-        private UI _ui;
+        private Scene.UI _ui;
 
         private void Awake()
         {
-            _ui = GetComponentInParent<UI>();
+            _ui = GetComponentInParent<Scene.UI>();
         }
 
         public void ToGame()

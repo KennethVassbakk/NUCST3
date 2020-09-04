@@ -3,13 +3,13 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace UI
+namespace Scene
 {
     public class UI : MonoBehaviour
     {
         [FormerlySerializedAs("PauseMenu_GO")] public GameObject pauseMenuGO;
 
-        void Update()
+        private void Update()
         {
             //to be hooked up to the new input system.
 
