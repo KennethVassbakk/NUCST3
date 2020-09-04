@@ -1,5 +1,6 @@
 ﻿// Author: John Hauge
 
+using Systems.Cooldown;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ namespace Scene
     public sealed class LoadScene : MonoBehaviour
     {
         private SceneTransition _transition;
+        private ICooldown _cooldown;
         [SerializeField] public int sceneNr;
 
         private void Start()
