@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Character
+namespace Character.OldController
 {
     public class CharacterMotor : MonoBehaviour
     {

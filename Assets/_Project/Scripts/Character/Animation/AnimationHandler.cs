@@ -1,11 +1,12 @@
 ﻿// Author: Kenneth Vassbakk
 
 using UnityEngine;
-
-namespace Character.OldController
+    
+namespace Character.Animation
 {
-    public class CharacterAnimation : MonoBehaviour
+    public class AnimationHandler : MonoBehaviour
     {
+        // References
         private Animator _animator;
         
         // Animator Settings
@@ -19,7 +20,7 @@ namespace Character.OldController
         private float _aCurrentVertical;
         
         // Blend speed
-        private float _dampTime = 0.1f;
+        private float _dampTime = 0.08f;
         
 #if UNITY_EDITOR
         private Vector3 _debugVector;
@@ -33,10 +34,9 @@ namespace Character.OldController
             _aMovementSpeed = Animator.StringToHash("MovementSpeed");
             _aHorizontal = Animator.StringToHash("Horizontal");
             _aVertical = Animator.StringToHash("Vertical");
-            
         }
         
-        /// <summary>
+                /// <summary>
         /// Animate character based on its rigidbody and the movement vector.
         /// Rotation of the character is taken into accounnt.
         /// </summary>
@@ -83,10 +83,12 @@ namespace Character.OldController
             _animator.SetFloat(_aVertical, relativePosition.z, _dampTime, Time.deltaTime);
             
             // Used for the unity Editor
+#if UNITY_EDITOR
             _debugVector = moveVector;
+#endif
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (!Application.isPlaying)
@@ -98,7 +100,6 @@ namespace Character.OldController
             Gizmos.DrawWireSphere(_debugVector, 0.25f);
             Gizmos.color = Color.white;
         }
-        #endif
-        
+#endif
     }
 }

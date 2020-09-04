@@ -3,7 +3,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace Character
+namespace Character.OldController
 {
     public class CameraController : MonoBehaviour
     {
