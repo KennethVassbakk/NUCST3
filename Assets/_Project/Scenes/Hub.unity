@@ -1977,6 +1977,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.93, z: 0}
+--- !u!114 &712458764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712458759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c672c54f8f47bb8fb7f7fea0f31c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+  - {fileID: 11400000, guid: 1fde41a6e346ba2418143fd60bdbda55, type: 2}
+  currentWeaponIndex: 0
+  currentWeaponObj: {fileID: 0}
+  weaponLocation: {fileID: 1085651260}
 --- !u!4 &712458765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4356730523324166, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
@@ -2805,6 +2822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
+--- !u!4 &1085651260 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4493752201937154, guid: f98aac9a2d9d46b43a1e3fa2fff8cecf, type: 3}
+  m_PrefabInstance: {fileID: 1085651259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1137865300
 GameObject:
   m_ObjectHideFlags: 0

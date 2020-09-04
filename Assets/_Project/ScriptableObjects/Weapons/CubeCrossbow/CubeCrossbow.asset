@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2509a0db94e444e9a9f585e99a6da4c3, type: 3}
-  m_Name: Crossbow
+  m_Name: CubeCrossbow
   m_EditorClassIdentifier: 
   wName: Weapon Name
   wDescription: 
   wLevel: 0
-  wGameObject: {fileID: 0}
+  wGameObject: {fileID: 2453245784147785910, guid: 9ecb19bff01d2f845a77a5f878c7e6ba, type: 3}
   wAbilities: []
   wSprite: {fileID: 0}
   projectileSpawn: 

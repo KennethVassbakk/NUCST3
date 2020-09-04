@@ -9,13 +9,13 @@ namespace Character
     public class CharacterWeapons : MonoBehaviour
     {
         public Weapon[] weapon;
-        public int _currentWeapon = 0;
+        public int currentWeaponIndex;
         public GameObject currentWeaponObj;
         public Transform weaponLocation;
 
         private void OnEnable()
         {
-            currentWeaponObj = PoolManager.Spawn(weapon[_currentWeapon].wGameObject, weaponLocation.position, weaponLocation.rotation);
+            currentWeaponObj = PoolManager.Spawn(weapon[currentWeaponIndex].wGameObject, weaponLocation.position, weaponLocation.rotation);
             currentWeaponObj.transform.SetParent(weaponLocation);
         }
     }
