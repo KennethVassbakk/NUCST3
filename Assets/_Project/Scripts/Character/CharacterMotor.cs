@@ -20,15 +20,6 @@ namespace Character
         private CharacterController _characterController;
         private CharacterInputController _input;
         private Plane _intersectPlane;
-        
-        // TODO: Remove serializable.
-        // These are serialized right now just for debugging purposes.
-        // ReSharper disable InconsistentNaming
-        [SerializeField] private Vector3 _moveVector;
-        [SerializeField] private bool _playerGrounded;
-        [SerializeField] private bool _groundSlope;
-        
-        // ReSharper restore InconsistentNaming
         [SerializeField] private float moveSpeed = 5f;
 
         private void OnEnable()
@@ -92,14 +83,10 @@ namespace Character
             //Physics.OverlapSphere(transform.position, 0.3f)
             if (Physics.Raycast(transform.position, Vector3.down, out var hit,
                 _characterController.height / 2 * SLOPE_FORCE_RAY_LENGTH))
-            {
-                //_playerGrounded = true;
+            //_playerGrounded = true;
                 _groundSlope = hit.normal != Vector3.up;
-            }
             else
-            {
                 _groundSlope = false;
-            }
         }
 
         private void RotateToMouse(Vector2 inputMousePosition)
@@ -157,7 +144,7 @@ namespace Character
             //_characterController.Move(moveVector * (Time.deltaTime * moveSpeed));
             return new Vector3(inputVector.x * moveSpeed, _moveVector.y, inputVector.z * moveSpeed) ;
         }
-        
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
@@ -169,5 +156,14 @@ namespace Character
             Debug.DrawLine(position, raydistance, Color.yellow, Time.deltaTime);
         }
 #endif
+
+        // TODO: Remove serializable.
+        // These are serialized right now just for debugging purposes.
+        // ReSharper disable InconsistentNaming
+        [SerializeField] private Vector3 _moveVector;
+        [SerializeField] private bool _playerGrounded;
+        [SerializeField] private bool _groundSlope;
+
+        // ReSharper restore InconsistentNaming
     }
 }

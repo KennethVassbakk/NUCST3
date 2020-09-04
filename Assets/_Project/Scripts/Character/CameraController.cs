@@ -7,17 +7,16 @@ namespace Character
 {
     public class CameraController : MonoBehaviour
     {
-        public static CameraController Instance { get; set; }
-
-        public float angleMin = 35f;
-        public float angleMax = 65f;
-        public float distanceMin = 10f;
-        public float distanceMax = 15f;
-
-        public CinemachineVirtualCamera Camera { get; protected set; }
-
         private float _currentDistance = 1f;
         private CinemachineFramingTransposer _framingTransposer;
+        public float angleMax = 65f;
+
+        public float angleMin = 35f;
+        public float distanceMax = 15f;
+        public float distanceMin = 10f;
+        public static CameraController Instance { get; set; }
+
+        public CinemachineVirtualCamera Camera { get; protected set; }
 
         // Initialize
         private void Awake()
@@ -28,7 +27,7 @@ namespace Character
 
             Zoom(0); // Init the zoom as well
         }
-        
+
         /// <summary>
         /// Currently only used by itself.
         /// May be used if we add zoom functionality to the game - if so, make public and run from CharacterInputController, or a CameraInputController

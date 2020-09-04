@@ -14,6 +14,6 @@ namespace Weapons
         public Ability[] wAbilities;                    // Weapon Abilities
         public Sprite wSprite;                          // Weapon Icon
 
-        public abstract void Initialize(GameObject obj);
+        public abstract void Initialize(GameObject character, GameObject weapon);
     }
 }

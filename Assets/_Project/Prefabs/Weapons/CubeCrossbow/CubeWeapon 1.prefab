@@ -39,6 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878708291080245048}
+  - component: {fileID: 718486384305404440}
   m_Layer: 0
   m_Name: CubeWeapon 1
   m_TagString: Untagged
@@ -61,6 +62,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &718486384305404440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453245784147785910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e852eb051f2c2245b940ba04327aee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpawn: {fileID: 8784546931725289261}
 --- !u!1 &4394627868990253881
 GameObject:
   m_ObjectHideFlags: 0

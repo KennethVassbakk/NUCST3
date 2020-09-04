@@ -7,8 +7,7 @@ namespace Weapons
     [CreateAssetMenu(menuName = "Weapons/MeleeWeapon")]
     public class MeleeWeapon : Weapon
     {
-        
-        public override void Initialize(GameObject obj)
+        public override void Initialize(GameObject character, GameObject weapon)
         {
             throw new System.NotImplementedException();
         }

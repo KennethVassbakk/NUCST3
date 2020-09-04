@@ -1,5 +1,6 @@
 ﻿// Author: Kenneth Vassbakk
 
+using Abilities;
 using UnityEngine;
 using Weapons;
 
@@ -8,15 +9,31 @@ namespace Character
     // TODO: Testing Weapon Script.
     public class CharacterWeapons : MonoBehaviour
     {
-        public Weapon[] weapon;
         public int currentWeaponIndex;
         public GameObject currentWeaponObj;
+        public Weapon[] weapon;
         public Transform weaponLocation;
 
         private void OnEnable()
         {
-            currentWeaponObj = PoolManager.Spawn(weapon[currentWeaponIndex].wGameObject, weaponLocation.position, weaponLocation.rotation);
+            var currentWep = weapon[currentWeaponIndex];
+            
+            currentWeaponObj = PoolManager.Spawn(currentWep.wGameObject, weaponLocation.position, weaponLocation.rotation);
             currentWeaponObj.transform.SetParent(weaponLocation);
+            currentWep.Initialize(gameObject, currentWeaponObj);
+
+            var rangedWep  = currentWep as RangedWeapon;
+            if( rangedWep != null)
+                GetComponent<ProjectileTriggerable>().projectileSpawn = rangedWep.projectileSpawnTransform;
+            
+        }
+
+        private void Update()
+        {
+            var ab = weapon[currentWeaponIndex].wAbilities[0];
+            // Fire ability just to test it out.
+            if (!Input.GetButtonDown("Fire1")) return;
+            ab.TriggerAbility();
         }
     }
 }
