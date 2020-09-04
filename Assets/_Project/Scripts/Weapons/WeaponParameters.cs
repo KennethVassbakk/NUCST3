@@ -1,7 +1,5 @@
 ﻿// Author: Kenneth Vassbakk
 
-using System;
-using Abilities;
 using UnityEngine;
 
 namespace Weapons

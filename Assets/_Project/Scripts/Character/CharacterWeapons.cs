@@ -19,13 +19,7 @@ namespace Character
 
         private void OnEnable()
         { 
-            var currentWep = weapon[currentWeaponIndex];
-            projectileTriggerable = GetComponent<ProjectileTriggerable>();
-            
-            currentWeaponObj = PoolManager.Spawn(currentWep.wGameObject, weaponLocation.position, weaponLocation.rotation);
-            currentWeaponObj.transform.SetParent(weaponLocation);
-            weaponParameters = currentWeaponObj.GetComponent<WeaponParameters>();
-            currentWep.Initialize(gameObject);
+            WeaponSwap();
         }
 
         private void Update()
@@ -37,6 +31,17 @@ namespace Character
                 ab.TriggerAbility(gameObject, weaponParameters.projectileSpawn);
             
             ab.TriggerAbility(gameObject);
+        }
+
+        private void WeaponSwap()
+        {
+            var currentWep = weapon[currentWeaponIndex];
+            projectileTriggerable = GetComponent<ProjectileTriggerable>();
+            
+            currentWeaponObj = PoolManager.Spawn(currentWep.wGameObject, weaponLocation.position, weaponLocation.rotation);
+            currentWeaponObj.transform.SetParent(weaponLocation);
+            weaponParameters = currentWeaponObj.GetComponent<WeaponParameters>();
+            currentWep.Initialize(gameObject);
         }
     }
 }

@@ -14,10 +14,7 @@ namespace Weapons
 
         public override void Initialize(GameObject character)
         {
-            foreach (var entry in wAbilities)
-            {
-                entry.Initialize(character);
-            }
+            foreach (var entry in wAbilities) entry.Initialize(character);
         }
     }
 }

@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Systems.Cooldown
 {
+    
     public class CooldownSystem : MonoBehaviour
     {
         public static CooldownSystem instance;
@@ -19,10 +19,8 @@ namespace Systems.Cooldown
                 instance = this;
         }
 
-        private void Update()
-        {
-            ProcessCooldowns();
-        }
+        // TODO: Jobify this.
+        private void Update() => ProcessCooldowns();
 
         private void ProcessCooldowns()
         {
@@ -74,22 +72,6 @@ namespace Systems.Cooldown
         public float GetRemainingDuration(ICooldown cooldown)
         {
             return _cooldowns.ContainsKey(cooldown.Id.GetHashCode()) ? _cooldowns[cooldown.Id.GetHashCode()].RemainingTime : 0f;
-        }
-    }
-    
-    public class CooldownData
-    {
-        public CooldownData(ICooldown cooldown)
-        {
-            RemainingTime = cooldown.CooldownDuration;
-        }
-        
-        public float RemainingTime { get; private set; }
-
-        public bool Decrementcooldown(float deltaTime)
-        {
-            RemainingTime = math.max(RemainingTime - deltaTime, 0f);
-            return !(Math.Abs(RemainingTime) > 0);
         }
     }
 }
