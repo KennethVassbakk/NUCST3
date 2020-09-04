@@ -24,7 +24,7 @@ namespace Abilities
 
         public override bool TriggerAbility(GameObject character, Transform spawnLocation = null)
         {
-            if (CooldownSystem.instance.IsOnCooldown(character, id)) return false;
+            if (CooldownSystem.instance.IsOnCooldown(character, this)) return false;
 
             var launchedProjectile = character.GetComponent<CharacterWeapons>().projectileTriggerable.Fire(character,projectile, spawnLocation);
             launchedProjectile.GetComponent<Rigidbody>().AddForce(launchedProjectile.transform.forward * 10, ForceMode.VelocityChange);
@@ -32,6 +32,5 @@ namespace Abilities
             
             return true;
         }
-        
     }
 }

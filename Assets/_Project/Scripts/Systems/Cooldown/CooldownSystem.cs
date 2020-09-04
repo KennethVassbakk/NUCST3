@@ -11,7 +11,9 @@ namespace Systems.Cooldown
     public class CooldownSystem : MonoBehaviour
     {
         public static CooldownSystem instance;
-        private Dictionary<int, CooldownData> _cooldowns = new Dictionary<int, CooldownData>();
+
+        // Using dictionary, since its slightly faster than lists when doing lookkups often.
+        private readonly Dictionary<int, CooldownData> _cooldowns = new Dictionary<int, CooldownData>();
 
         private void Awake()
         {
@@ -20,7 +22,10 @@ namespace Systems.Cooldown
         }
 
         // TODO: Jobify this.
-        private void Update() => ProcessCooldowns();
+        private void Update()
+        {
+            ProcessCooldowns();
+        }
 
         private void ProcessCooldowns()
         {
@@ -30,36 +35,41 @@ namespace Systems.Cooldown
                 _cooldowns.Remove(entry.Key);
 
         }
-    
+
         public void PutOnCooldown(GameObject go, ICooldown cooldown)
         {
-            // If its not currently on cooldown, put it on cooldown.
-            if(!_cooldowns.ContainsKey(go.GetHashCode() + cooldown.Id.GetHashCode()))
-                _cooldowns.Add(go.GetHashCode() + cooldown.Id.GetHashCode(), new CooldownData(cooldown));
-        }
-        
-        public void PutOnCooldown(ICooldown cooldown)
-        {
-            // If its not currently on cooldown, put it on cooldown.
-            if(!_cooldowns.ContainsKey(cooldown.Id.GetHashCode()))
-                _cooldowns.Add(cooldown.Id.GetHashCode(), new CooldownData(cooldown));
+            var key = go.GetHashCode() + cooldown.Id.GetHashCode();
+            if(!_cooldowns.ContainsKey(key))
+                _cooldowns.Add(key, new CooldownData(cooldown));
         }
 
-        public bool IsOnCooldown(GameObject go, Guid id)
+        public void PutOnCooldown(ICooldown cooldown)
+        {
+            var key = cooldown.Id.GetHashCode();
+            if(!_cooldowns.ContainsKey(key))
+                _cooldowns.Add(key, new CooldownData(cooldown));
+        }
+
+        public bool IsOnCooldown(GameObject go, Guid id) 
         {
             return _cooldowns.ContainsKey(go.GetHashCode() + id.GetHashCode());
+        }
+
+        public bool IsOnCooldown(GameObject go, ICooldown cooldown) 
+        {
+            return _cooldowns.ContainsKey(go.GetHashCode() + cooldown.Id.GetHashCode());
         }
 
         public bool IsOnCooldown(Guid id)
         {
             return _cooldowns.ContainsKey(id.GetHashCode());
         }
-        
+
         public bool IsOnCooldown(ICooldown cooldown)
         {
             return _cooldowns.ContainsKey(cooldown.Id.GetHashCode());
         }
-        
+
         public float GetRemainingDuration(Guid id)
         {
             return _cooldowns.ContainsKey(id.GetHashCode()) ? _cooldowns[id.GetHashCode()].RemainingTime : 0f;
@@ -69,6 +79,7 @@ namespace Systems.Cooldown
         {
             return _cooldowns.ContainsKey(go.GetHashCode() + cooldown.Id.GetHashCode()) ? _cooldowns[cooldown.Id.GetHashCode()].RemainingTime : 0f;
         }
+
         public float GetRemainingDuration(ICooldown cooldown)
         {
             return _cooldowns.ContainsKey(cooldown.Id.GetHashCode()) ? _cooldowns[cooldown.Id.GetHashCode()].RemainingTime : 0f;
