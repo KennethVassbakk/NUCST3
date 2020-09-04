@@ -12,11 +12,17 @@ namespace Character
         public int currentWeaponIndex;
         public GameObject currentWeaponObj;
         public Weapon[] weapon;
+        private Weapon[] _myWeapon;
         public Transform weaponLocation;
 
         private void OnEnable()
         {
-            var currentWep = weapon[currentWeaponIndex];
+            _myWeapon = new Weapon[weapon.Length];
+            for (int i = 0; i < weapon.Length; i++)
+            {
+                _myWeapon[i] = Instantiate(weapon[i]);
+            }
+            var currentWep = _myWeapon[currentWeaponIndex];
             
             currentWeaponObj = PoolManager.Spawn(currentWep.wGameObject, weaponLocation.position, weaponLocation.rotation);
             currentWeaponObj.transform.SetParent(weaponLocation);
@@ -30,7 +36,7 @@ namespace Character
 
         private void Update()
         {
-            var ab = weapon[currentWeaponIndex].wAbilities[0];
+            var ab = _myWeapon[currentWeaponIndex].CurrentAbilities[0];
             // Fire ability just to test it out.
             if (!Input.GetButtonDown("Fire1")) return;
             ab.TriggerAbility();

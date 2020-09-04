@@ -11,7 +11,7 @@ namespace Systems.Cooldown
     public class CooldownSystem : MonoBehaviour
     {
         public static CooldownSystem instance;
-        private readonly Dictionary<Guid, CooldownData> _cooldowns = new Dictionary<Guid, CooldownData>();
+        private Dictionary<Guid, CooldownData> _cooldowns = new Dictionary<Guid, CooldownData>();
 
         private void Awake()
         {

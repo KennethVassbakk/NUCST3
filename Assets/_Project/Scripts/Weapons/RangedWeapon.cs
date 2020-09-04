@@ -17,13 +17,15 @@ namespace Weapons
         
         public override void Initialize(GameObject character, GameObject weapon)
         {
+            InitializeAbilities();
+            
             projectileSpawnTransform = weapon.GetComponent<WeaponParameters>().projectileSpawn;
             
             if(projectileSpawnTransform == null)
                 Debug.Log($"Weapon {wName} could not find its projectile spawn location {projectileSpawnTransform}");
             
             // We need to initialize all the abilities as well
-            foreach (var entry in wAbilities)
+            foreach (var entry in CurrentAbilities)
             {
                 entry.Initialize(character, weapon);
             }

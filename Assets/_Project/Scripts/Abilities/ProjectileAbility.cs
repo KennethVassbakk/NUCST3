@@ -14,13 +14,16 @@ namespace Abilities
         public float hitForce = 100f;            // Force to apply to hit target
         public GameObject projectile;
         public float range;                      // Range of the ability
+        private string test;
 
         public override void Initialize(GameObject character, GameObject weapon)
         {
             _projectileTriggerable = character.GetComponent<ProjectileTriggerable>();
+            test = character.name;
             
             // Create a new ID of this Cooldown, combining the hashcode and the abilityname.
-            id = Guid.NewGuid();
+            id = Guid.NewGuid() ;
+            Debug.Log(id);
         }
 
         public override bool TriggerAbility()
