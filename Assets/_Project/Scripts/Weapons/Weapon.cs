@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Author: Kenneth Vassbakk
+
+using UnityEngine;
 using Abilities;
 
 namespace Weapons
