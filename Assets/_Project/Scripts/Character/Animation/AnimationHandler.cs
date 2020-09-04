@@ -23,7 +23,7 @@ namespace Character.Animation
         private float _dampTime = 0.08f;
         
 #if UNITY_EDITOR
-        private Vector3 _debugVector;
+        [SerializeField]private Vector3 _debugVector;
 #endif
         
         private void Start()
@@ -84,7 +84,7 @@ namespace Character.Animation
             
             // Used for the unity Editor
 #if UNITY_EDITOR
-            _debugVector = moveVector;
+            _debugVector = moveToward + transform.position;
 #endif
         }
 

@@ -13,10 +13,11 @@ namespace Scene
         {
             //to be hooked up to the new input system.
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                TogglePause();
-            }
+            // todo: This no longer works. changed Input method.
+           // if (Input.GetKeyDown(KeyCode.Escape))
+           // {
+           //     TogglePause();
+           // }
         }
 
         public void TogglePause()

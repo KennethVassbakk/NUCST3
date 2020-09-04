@@ -18,6 +18,7 @@ namespace Character.Controller
         private CharacterController _characterController;
         private MovementHandler _movementHandler;
         private Camera _camera;
+        private Controls _controls;
         
         // Variables
         private Vector3 _moveVector;
@@ -36,13 +37,22 @@ namespace Character.Controller
             _movementHandler = GetComponent<MovementHandler>();
             _intersectPlane = new Plane(Vector3.up, transform.position);
             _moveVector = Vector3.zero;
-
+            _controls = new Controls();
+            
             if (Camera.main != null) _camera = Camera.main;
         }
 
         // Add & Remove Modifier
-        private void OnEnable() => _movementHandler.AddModifier(this);
-        private void OnDisable() => _movementHandler.RemoveModifier(this);
+        private void OnEnable() {
+            _movementHandler.AddModifier(this);
+            _controls.Player.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _movementHandler.RemoveModifier(this);
+            _controls.Player.Disable();
+        }
 
         private void Update()
         {
@@ -60,10 +70,15 @@ namespace Character.Controller
         
         private void GetMovementInput()
         {
-            _mousePosition = Input.mousePosition;
-            _previousInputDirection.x = Input.GetAxisRaw("Horizontal");
+            //_mousePosition = Input.mousePosition;
+            _mousePosition = _controls.Player.MousePosition.ReadValue<Vector2>();
+            var movementInput = _controls.Player.Movement.ReadValue<Vector2>();
+            _previousInputDirection = new Vector3(movementInput.x, 0f, movementInput.y);
+            
+            /*_previousInputDirection.x = Input.GetAxisRaw("Horizontal");
             _previousInputDirection.y = 0f;
-            _previousInputDirection.z = Input.GetAxisRaw("Vertical");
+            _previousInputDirection.z = Input.GetAxisRaw("Vertical");*/
+            
             _previousInputDirection.Normalize();
         }
         
