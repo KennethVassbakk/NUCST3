@@ -2,14 +2,13 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Scene
 {
     public sealed class LoadScene : MonoBehaviour
     {
         private SceneTransition _transition;
-        [FormerlySerializedAs("SceneNR")] public int sceneNr;
+        [SerializeField] public int sceneNr;
 
         private void Start()
         {
