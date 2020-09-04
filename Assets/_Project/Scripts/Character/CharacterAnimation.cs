@@ -1,6 +1,5 @@
 ﻿// Author: Kenneth Vassbakk
 
-using System;
 using UnityEngine;
 
 namespace Character

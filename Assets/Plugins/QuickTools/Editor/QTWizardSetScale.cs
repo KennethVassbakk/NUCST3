@@ -27,8 +27,8 @@ namespace QuickTools
         private Vector3 _randomMin;
         private Vector3 _randomMax;
 
-        private const float RandMin = 0f;
-        private const float RandMax = 10f;
+        private const float RAND_MIN = 0f;
+        private const float RAND_MAX = 10f;
 
         private void Load()
         {
@@ -105,7 +105,7 @@ namespace QuickTools
                     EditorGUILayout.BeginHorizontal();
                     {
                         _randomMin.x = EditorGUILayout.FloatField(_randomMin.x, GUILayout.Width(50f));
-                        EditorGUILayout.MinMaxSlider(ref _randomMin.x, ref _randomMax.x, RandMin, RandMax);
+                        EditorGUILayout.MinMaxSlider(ref _randomMin.x, ref _randomMax.x, RAND_MIN, RAND_MAX);
                         _randomMax.x = EditorGUILayout.FloatField(_randomMax.x, GUILayout.Width(50f));
                     }
                     EditorGUILayout.EndHorizontal();
@@ -119,7 +119,7 @@ namespace QuickTools
                     EditorGUILayout.BeginHorizontal();
                     {
                         _randomMin.y = EditorGUILayout.FloatField(_randomMin.y, GUILayout.Width(50f));
-                        EditorGUILayout.MinMaxSlider(ref _randomMin.y, ref _randomMax.y, RandMin, RandMax);
+                        EditorGUILayout.MinMaxSlider(ref _randomMin.y, ref _randomMax.y, RAND_MIN, RAND_MAX);
                         _randomMax.y = EditorGUILayout.FloatField(_randomMax.y, GUILayout.Width(50f));
                     }
                     EditorGUILayout.EndHorizontal();
@@ -133,7 +133,7 @@ namespace QuickTools
                     EditorGUILayout.BeginHorizontal();
                     {
                         _randomMin.z = EditorGUILayout.FloatField(_randomMin.z, GUILayout.Width(50f));
-                        EditorGUILayout.MinMaxSlider(ref _randomMin.z, ref _randomMax.z, RandMin, RandMax);
+                        EditorGUILayout.MinMaxSlider(ref _randomMin.z, ref _randomMax.z, RAND_MIN, RAND_MAX);
                         _randomMax.z = EditorGUILayout.FloatField(_randomMax.z, GUILayout.Width(50f));
                     }
                     EditorGUILayout.EndHorizontal();

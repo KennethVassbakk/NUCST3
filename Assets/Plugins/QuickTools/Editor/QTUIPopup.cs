@@ -19,7 +19,7 @@ namespace QuickTools
         private static bool _positionSet;
 
         public const int PopupWidth = 120;
-        private const int PopupHeight = 529;
+        private const int POPUP_HEIGHT = 529;
 
         // Styles
         private static GUIStyle _qtTitleBox;
@@ -82,12 +82,12 @@ namespace QuickTools
             {
                 _rectangle = _instance.position = new Rect(Event.current.mousePosition.x - 5,
                     Event.current.mousePosition.y - 5,
-                    PopupWidth, PopupHeight);
+                    PopupWidth, POPUP_HEIGHT);
 
                 _positionSet = true;
             }
 
-            QtUtility.DrawPopupBorder(PopupWidth, PopupHeight);
+            QtUtility.DrawPopupBorder(PopupWidth, POPUP_HEIGHT);
 
             GUILayout.Label("QuickTools", _qtTitleBox);
 

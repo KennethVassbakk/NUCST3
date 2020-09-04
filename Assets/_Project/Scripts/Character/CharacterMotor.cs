@@ -6,7 +6,7 @@ namespace Character
 {
     public class CharacterMotor : MonoBehaviour
     {
-        private const float GRAVITY_VALUE = -9.81f;
+        //private const float GRAVITY_VALUE = -9.81f;
 
         //  Used for handling slope stuttering
         private const float SLOPE_FORCE = 5;
@@ -20,11 +20,15 @@ namespace Character
         private CharacterController _characterController;
         private CharacterInputController _input;
         private Plane _intersectPlane;
-
+        
+        // TODO: Remove serializable.
+        // These are serialized right now just for debugging purposes.
+        // ReSharper disable InconsistentNaming
         [SerializeField] private Vector3 _moveVector;
         [SerializeField] private bool _playerGrounded;
         [SerializeField] private bool _groundSlope;
-
+        
+        // ReSharper restore InconsistentNaming
         [SerializeField] private float moveSpeed = 5f;
 
         private void OnEnable()

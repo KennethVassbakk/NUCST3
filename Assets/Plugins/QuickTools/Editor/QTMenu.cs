@@ -13,7 +13,7 @@ namespace QuickTools
     /// </summary>
     public static class QtMenu
     {
-        public static QtuiPopup Popup;
+        public static QtuiPopup popup;
 
         /// <summary>
         /// Adds the "Open Window" to Unity Editor
