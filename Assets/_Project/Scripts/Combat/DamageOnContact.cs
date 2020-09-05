@@ -11,9 +11,7 @@ namespace Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<IDamageable>(out var damageable))
-            {
                 damageable.DealDamage(amount);
-            }
         }
     }
 }
