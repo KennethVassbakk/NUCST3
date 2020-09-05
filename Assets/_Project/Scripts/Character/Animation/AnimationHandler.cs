@@ -23,7 +23,7 @@ namespace Character.Animation
         private float _dampTime = 0.08f;
         
 #if UNITY_EDITOR
-        [SerializeField]private Vector3 _debugVector;
+        [SerializeField]private Vector3 debugVector;
 #endif
         
         private void Start()
@@ -84,7 +84,7 @@ namespace Character.Animation
             
             // Used for the unity Editor
 #if UNITY_EDITOR
-            _debugVector = moveToward + transform.position;
+            debugVector = moveToward + transform.position;
 #endif
         }
 
@@ -97,7 +97,7 @@ namespace Character.Animation
             }
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(_debugVector, 0.25f);
+            Gizmos.DrawWireSphere(debugVector, 0.25f);
             Gizmos.color = Color.white;
         }
 #endif
