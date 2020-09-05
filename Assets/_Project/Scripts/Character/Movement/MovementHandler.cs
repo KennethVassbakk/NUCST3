@@ -22,12 +22,6 @@ namespace Character.Movement
 
         private Vector3 _movementVector;
         
-#if UNITY_EDITOR
-        // ReSharper disable once NotAccessedField.Local
-        [SerializeField] private Vector3 debugVector;
-#endif
-        
-
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -50,11 +44,8 @@ namespace Character.Movement
         private void Move()
         {
             _movementVector = _modifiers.Aggregate(Vector3.zero, (current, modifier) => current + modifier.Value);
+            
             _characterController.Move(_movementVector * Time.fixedDeltaTime);
-
-#if UNITY_EDITOR
-            debugVector = _movementVector;
-#endif
         }
     }
 }
