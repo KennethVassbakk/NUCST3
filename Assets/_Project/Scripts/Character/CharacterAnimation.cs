@@ -83,7 +83,10 @@ namespace Character.OldController
             _animator.SetFloat(_aVertical, relativePosition.z, _dampTime, Time.deltaTime);
             
             // Used for the unity Editor
+#if UNITY_EDITOR
             _debugVector = moveVector;
+#endif
+
         }
 
         #if UNITY_EDITOR
