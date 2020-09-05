@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Character.Controller
+namespace Character.Movement
 {
     public class MovementInputProcessor : MonoBehaviour, IMovementModifier
     {

@@ -1,12 +1,11 @@
 ﻿// Author: Kenneth Vassbakk
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Character.Animation;
 using UnityEngine;
 
-namespace Character.Controller
+namespace Character.Movement
 {
     public class MovementHandler : MonoBehaviour
     {
