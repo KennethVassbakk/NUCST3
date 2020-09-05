@@ -18,12 +18,10 @@ namespace Combat
         public void DealDamage(int amount)
         {
             if (amount <= 0) return;
-            
             _currentHealth = math.max(0, _currentHealth - amount);
 
             if (_currentHealth == 0)
                 PoolManager.DeSpawn(gameObject);
-            
         }
 
         public void Heal(int amount)
