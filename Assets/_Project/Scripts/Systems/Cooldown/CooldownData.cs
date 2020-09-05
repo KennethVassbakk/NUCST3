@@ -13,7 +13,7 @@ namespace Systems.Cooldown
         
         public float RemainingTime { get; private set; }
 
-        public bool Decrementcooldown(float deltaTime)
+        public bool DecrementCooldown(float deltaTime)
         {
             RemainingTime = math.max(RemainingTime - deltaTime, 0f);
             return !(math.abs(RemainingTime) > 0);

@@ -44,7 +44,7 @@ namespace Character.Movement
         private void Move()
         {
             _movementVector = _modifiers.Aggregate(Vector3.zero, (current, modifier) => current + modifier.Value);
-            
+
             _characterController.Move(_movementVector * Time.fixedDeltaTime);
         }
     }

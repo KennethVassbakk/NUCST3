@@ -31,8 +31,19 @@ namespace Systems.Cooldown
         {
             var deltaTime = Time.deltaTime;
             
-            foreach (var entry in _cooldowns.Where(entry => entry.Value.Decrementcooldown(deltaTime)).ToArray())
+            // Reverse loop through the dictionary since we are modifying it!
+            for (var i = _cooldowns.Count - 1; i >= 0; i--)
+            {
+                var entry = _cooldowns.ElementAt(i);
+                if (entry.Value.DecrementCooldown(deltaTime))
+                    _cooldowns.Remove(entry.Key);
+
+            }
+            
+            /*
+            foreach (var entry in _cooldowns.Where(entry => entry.Value.DecrementCooldown(deltaTime)).ToArray())
                 _cooldowns.Remove(entry.Key);
+                */
 
         }
 

@@ -1,6 +1,7 @@
 ﻿// Author: Kenneth Vassbakk
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Character.Movement
 {
@@ -38,9 +39,9 @@ namespace Character.Movement
             _intersectPlane = new Plane(Vector3.up, transform.position);
             _moveVector = Vector3.zero;
             _controls = new Controls();
-            
             if (Camera.main != null) _camera = Camera.main;
         }
+        
 
         // Add & Remove Modifier
         private void OnEnable() {
@@ -57,7 +58,6 @@ namespace Character.Movement
         private void Update()
         {
             _wasGroundedLastFrame = _characterController.isGrounded;
-            
             GetMovementInput();
             Move();
             RotateToMouse(_mousePosition);
@@ -68,9 +68,10 @@ namespace Character.Movement
 #endif
         }
         
+        // TODO: This isn't ideal, we're polling this every frame,
+        // the new input system does events, so there's a way we can change when they change.
         private void GetMovementInput()
         {
-            //_mousePosition = Input.mousePosition;
             _mousePosition = _controls.Player.MousePosition.ReadValue<Vector2>();
             var movementInput = _controls.Player.Movement.ReadValue<Vector2>();
             _previousInputDirection = new Vector3(movementInput.x, 0f, movementInput.y);

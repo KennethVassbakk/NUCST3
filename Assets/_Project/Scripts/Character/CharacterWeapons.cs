@@ -1,7 +1,10 @@
 ﻿// Author: Kenneth Vassbakk
 
+using System;
 using Abilities;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Weapons;
 
 namespace Character
@@ -17,6 +20,9 @@ namespace Character
         public WeaponParameters weaponParameters;
 
         public ProjectileTriggerable projectileTriggerable;
+        
+        // Abilities
+        private bool _fire1;
 
         private void Awake()
         {
@@ -27,13 +33,18 @@ namespace Character
         { 
             WeaponSwap();
             _controls.Player.Enable();
+            _controls.Player.Fire.performed += context => _fire1 = context.ReadValue<float>() > 0;
+            _controls.Player.Fire.canceled  += context => _fire1 = context.ReadValue<float>() > 0;
         }
-
-        private void OnDisable() => _controls.Player.Disable();
+        
+        private void OnDisable()
+        {
+            _controls.Player.Disable();
+        }
 
         private void Update()
         {
-            var ab = weapon[currentWeaponIndex].wAbilities[0];
+            //var ab = weapon[currentWeaponIndex].wAbilities[0];
             // TODO: Input method changed.
             // Fire ability just to test it out.
            // if (!Input.GetButtonDown("Fire1")) return;
@@ -41,6 +52,14 @@ namespace Character
             //    ab.TriggerAbility(gameObject, weaponParameters.projectileSpawn);
             
             //ab.TriggerAbility(gameObject);
+            if(_fire1)
+            {
+                var ab = weapon[currentWeaponIndex].wAbilities[0];
+                if (ab.isRangedAttack)
+                    ab.TriggerAbility(gameObject, weaponParameters.projectileSpawn);
+
+                ab.TriggerAbility(gameObject);
+            }
         }
 
         private void WeaponSwap()

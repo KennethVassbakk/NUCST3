@@ -36,7 +36,7 @@ namespace Character.Animation
             _aVertical = Animator.StringToHash("Vertical");
         }
         
-                /// <summary>
+        /// <summary>
         /// Animate character based on its rigidbody and the movement vector.
         /// Rotation of the character is taken into accounnt.
         /// </summary>
@@ -44,6 +44,9 @@ namespace Character.Animation
         /// <param name="moveVector">Vector3 MovementDirection (input)</param>
         public void AnimateMovement(Transform characterTransform, Vector3 moveVector)
         {
+            // TODO: We should check magnitude of the movement we're doing,
+            // so that we dont poll this all the time.
+            
             _aCurrentHorizontal = _animator.GetFloat(_aHorizontal);
             _aCurrentVertical = _animator.GetFloat(_aVertical);
 
