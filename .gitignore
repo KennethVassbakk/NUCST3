@@ -58,3 +58,4 @@ crashlytics-build.properties
 /FMOD/**.unsaved
 /FMOD/**.cache
 /FMOD/**.restore
+fmod_editor.log
