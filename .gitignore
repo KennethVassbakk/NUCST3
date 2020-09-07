@@ -60,3 +60,4 @@ crashlytics-build.properties
 /FMOD/**.restore
 fmod_editor.log
 ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
