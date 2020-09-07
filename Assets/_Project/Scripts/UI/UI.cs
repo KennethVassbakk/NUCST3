@@ -1,9 +1,6 @@
 ﻿// Author: John Hauge
 
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace UI
 {
