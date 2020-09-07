@@ -51,6 +51,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 #FMOD Stuff
+fmod_editor.log
 
 
 # FMOD studio (In folder FMOD)
