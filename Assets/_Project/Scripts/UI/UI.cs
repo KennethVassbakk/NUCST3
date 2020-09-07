@@ -2,6 +2,8 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -16,7 +18,6 @@ namespace UI
         }
         public void TogglePause()
         {
-            print("It has been pushed");
             if (pauseMenuGO.activeSelf)
             {
                 pauseMenuGO.SetActive(false);
@@ -28,12 +29,13 @@ namespace UI
                 Time.timeScale = 0f;
             }
         }
+        
         private void OnEnable()
         {
             _controls.Player.Enable();
-            _controls.Player.PauseMenu.performed += context => TogglePause();
+            _controls.Player.PauseMenu.performed += ctx => TogglePause();
         }
-
+        
         private void OnDisable()
         {
             _controls.Player.Disable();
