@@ -18,16 +18,8 @@ namespace UI
         }
         public void TogglePause()
         {
-            if (pauseMenuGO.activeSelf)
-            {
-                pauseMenuGO.SetActive(false);
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                pauseMenuGO.SetActive(true);
-                Time.timeScale = 0f;
-            }
+            pauseMenuGO.SetActive(!pauseMenuGO.activeSelf);
+            Time.timeScale = pauseMenuGO.activeSelf ? 0f : 1f;
         }
         
         private void OnEnable()
