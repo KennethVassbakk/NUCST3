@@ -1,27 +1,22 @@
 ﻿// Author: John Hauge
 
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Scene
+namespace UI
 {
     public class UI : MonoBehaviour
     {
-        [FormerlySerializedAs("PauseMenu_GO")] public GameObject pauseMenuGO;
+        [SerializeField] public GameObject pauseMenuGO;
+        private Controls _controls;
 
-        private void Update()
+        private void Awake()
         {
-            //to be hooked up to the new input system.
-
-            // todo: This no longer works. changed Input method.
-           // if (Input.GetKeyDown(KeyCode.Escape))
-           // {
-           //     TogglePause();
-           // }
+            _controls = new Controls();
         }
-
         public void TogglePause()
         {
+            print("It has been pushed");
             if (pauseMenuGO.activeSelf)
             {
                 pauseMenuGO.SetActive(false);
@@ -33,6 +28,15 @@ namespace Scene
                 Time.timeScale = 0f;
             }
         }
+        private void OnEnable()
+        {
+            _controls.Player.Enable();
+            _controls.Player.PauseMenu.performed += context => TogglePause();
+        }
 
+        private void OnDisable()
+        {
+            _controls.Player.Disable();
+        }
     }
 }

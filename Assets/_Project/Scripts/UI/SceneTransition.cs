@@ -1,9 +1,10 @@
 ﻿// Author: John Hauge
 
+using Scene;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scene
+namespace UI
 {
     public class SceneTransition : MonoBehaviour
     {

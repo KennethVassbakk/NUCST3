@@ -1,6 +1,7 @@
 ﻿// Author: John Hauge
 
 using Systems.Cooldown;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
