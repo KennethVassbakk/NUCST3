@@ -36,7 +36,9 @@ namespace UI
 
         private void OnDisable()
         {
+            
             _controls.Player.Disable();
+            
         }
     }
 }
