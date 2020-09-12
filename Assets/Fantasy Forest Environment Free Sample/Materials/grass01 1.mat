@@ -32,6 +32,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Sec_Tex:
+        m_Texture: {fileID: 2800000, guid: a35141bf8c19a87408d5c79579fc570b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_3CDED122:
         m_Texture: {fileID: 2800000, guid: 8bbebad486b10f345b47afd4f18fdfc8, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -64,6 +68,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6c41a2cea80b4fc499bac2a6c14a4514, type: 3}
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
+    - _Maintex:
+        m_Texture: {fileID: 2800000, guid: 5c5e55a9fbc4aa64a92b1555198f8bb8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -73,8 +81,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - SpreadScale: 0
     - Vector1_11E506E0: 9.81
-    - Vector1_2312A29B: 61.2001
+    - Vector1_2312A29B: 435.57
     - Vector1_EF0483FD: 1.1
     - Vector1_F6BD630C: 2.07
     - _AlphaClip: 0
