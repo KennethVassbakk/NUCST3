@@ -33,11 +33,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - BreachTex_Albedo:
-        m_Texture: {fileID: 2800000, guid: a35141bf8c19a87408d5c79579fc570b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - BreachTex_Emission:
-        m_Texture: {fileID: 2800000, guid: a7a06ba9d5f054047a7af094b56318b1, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - BreachTex_Metallic:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - MainTex_Emmision:
-        m_Texture: {fileID: 2800000, guid: a7a06ba9d5f054047a7af094b56318b1, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - MainTex_Metallic:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - MainTex_Normal:
-        m_Texture: {fileID: 2800000, guid: b2a5d9694ae0037448cb2244e6a6c2d5, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Sec_Tex:
@@ -97,7 +97,7 @@ Material:
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _MainTex_Albedo:
-        m_Texture: {fileID: -3445902180689000385, guid: 3586cc4aa158ee54e97198074c3b91a9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Maintex:
@@ -113,7 +113,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - SpreadScale: 0
+    - SpreadScale: 15.07
     - Vector1_11E506E0: 9.81
     - Vector1_2312A29B: 4.8
     - Vector1_EF0483FD: 1.1
